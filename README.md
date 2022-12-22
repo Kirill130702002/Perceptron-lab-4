@@ -171,6 +171,34 @@ private class PerceptronClass
 ### Построить графики зависимости количества эпох от ошибки обучения. Указать от чего зависит необходимое количество эпох обучения.
 ![image](https://user-images.githubusercontent.com/104893843/209120543-1d929303-4dd1-4b8c-ac5c-fe31b4bff108.png)
 
+необходимое количество эпох обучения зависит от bias (смещение) и weights (вес) =>
+```csharp
+double DotProductBias(double[] v1, double[] v2) 
+	{
+		if (v1 == null || v2 == null)
+			return -1;
+	 
+		if (v1.Length != v2.Length)
+			return -1;
+	 
+		double d = 0;
+		for (int x = 0; x < v1.Length; x++)
+		{
+			d += v1[x] * v2[x];
+		}
+
+		d += bias;
+	 
+		return d;
+	}
+
+	double CalcOutput(int i)
+	{
+		double dp = DotProductBias(weights,ts[i].input);
+		if(dp > 0) return(1);
+		return (0);
+	}
+```
 
 
 ## Задание 3
