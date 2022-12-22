@@ -204,60 +204,35 @@ double DotProductBias(double[] v1, double[] v2)
 ## Задание 3
 ### Построить визуальную модель работы перцептрона
 
+Ход работы:
 
-Для визуалици я выбрал взаимодействие кубов, означающих 1 - зеленый куб и 0 - красный куб,
-при соприкосновении кубы выполнют ```OR``` операцию запрашивая значение из перцепртона, и перекрашиваются в результат работы перцептрона.
+Создадим модель для работы фунции OR. Черные кубы - единицы, белые - нули. Результат работы = результат логического сложения.
+![image](https://user-images.githubusercontent.com/104893843/209204665-344acc73-95ea-4ddd-a814-194a23224176.png)
 
-
-Новый файл [Perceptron2.cs](https://github.com/VenchasS/DA-in-GameDev-lab4/blob/main/Perceptron2.cs) который используется для визуализации
-
+Создадим скрипт для изменения цвета при столкновении.
 
 ```csharp
-    private PerceptronClass orPerceptron;
-    private Vector3 pos;
-    private Material defMat;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-
-    void Start()
+public class ChangeColor : MonoBehaviour
+{
+    private void OnTriggerEnter(Collider other)
     {
-        int iterations = 8;
-        orPerceptron = new PerceptronClass();
-        orPerceptron.Train(iterations, OrTs);
-
-        pos = this.transform.position;
-        defMat = this.gameObject.GetComponent<Renderer>().material;
-
-    }
-
-    IEnumerator UpdateCoroutine()
-    {
-        yield return new WaitForSeconds(2);
-        this.transform.position = pos;
-        this.gameObject.GetComponent<Renderer>().material = defMat;
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision);
-        var cube = collision.gameObject.GetComponent<Perceptron>();
-        if (cube)
+        if (other.gameObject.GetComponent<Renderer>().material.color == Color.white && this.gameObject.GetComponent<Renderer>().material.color == Color.white)
         {
-            if (orPerceptron.CalcOutput(this.OrValue, cube.OrValue) == 1)
-            {
-                this.gameObject.GetComponent<Renderer>().material = GreenMaterial;
-            }
-            else
-            {
-                this.gameObject.GetComponent<Renderer>().material = RedMaterial;
-            }
-            StartCoroutine(UpdateCoroutine());
+            other.gameObject.GetComponent<Renderer>().material.color = Color.white;
+            this.gameObject.GetComponent<Renderer>().material.color = Color.white;
+        }
+        else
+        {
+            other.gameObject.GetComponent<Renderer>().material.color = Color.black;
+            this.gameObject.GetComponent<Renderer>().material.color = Color.black;
         }
     }
+}
 ```
-![2022-11-28 15-57-16](https://user-images.githubusercontent.com/49115035/204262244-620a7c67-e02f-46b8-92e0-42decb69174c.gif)
-
-
 
 ## Выводы
 В ходе лабораторной работы я научился использовать перцептрон и полноценно научил его 3 базовым операциям а так же XOR операции. Я понял как работает линейная модель перцептрона и узнал про XOR problem.
