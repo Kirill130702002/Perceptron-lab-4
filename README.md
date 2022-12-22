@@ -1,7 +1,8 @@
 # АНАЛИЗ ДАННЫХ И ИСКУССТВЕННЫЙ ИНТЕЛЛЕКТ [in GameDev]
+
 Отчет по лабораторной работе #4 выполнил:
-- Безбородов Вениамин Васильевич
-- РИ210940
+- Упаев Кирилл Анатольевич 
+- РИ-210940
 Отметка о выполнении заданий (заполняется студентом):
 
 | Задание | Выполнение | Баллы |
@@ -17,28 +18,15 @@
 - к.э.н., доцент Панов М.А.
 - ст. преп., Фадеев В.О.
 
-
-Структура отчета
-
-- Данные о работе: название работы, фио, группа, выполненные задания.
-- Цель работы.
-- Задание 1.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 2.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Задание 3.
-- Код реализации выполнения задания. Визуализация результатов выполнения (если применимо).
-- Выводы.
-
-
 ## Цель работы
 Изучить работу перцептрона на реализации команд OR, AND, XOR, NAND.
 
 ## Задание 1
 ### Реализовать перцептрон, который умеет производить вычисления OR, AND, XOR, NAND.
 Ход работы:
-Был создан пустой 3D проект на Unity, к нему был подключен скрипт Perceptron.cs.
+Был создан пустой 3D проект на Unity, к нему был подключен скрипт newPerceptron.cs.
 Затем код был модифицирован и вынесен в класс ```PerceptronClass```
+
 ```csharp
 private class PerceptronClass
     {
@@ -123,14 +111,17 @@ private class PerceptronClass
 
 Затем были заполненны Training set'ы, каждый для своей операции
 ```OR, AND, XOR, NAND```
-![Screenshot_2](https://user-images.githubusercontent.com/49115035/204156231-3e60fa89-cdef-4d87-8890-5de3b42eb95c.png)
-![Screenshot_3](https://user-images.githubusercontent.com/49115035/204156225-b003d51a-e9fc-4f0d-a6d4-0bde78346e2f.png)
-![Screenshot_4](https://user-images.githubusercontent.com/49115035/204156228-c912b3a8-4b14-4e90-9b4f-3202fcd53db9.png)
-![Screenshot_5](https://user-images.githubusercontent.com/49115035/204156230-c547b185-0f3b-4933-8250-7604bb043581.png)
+![image](https://user-images.githubusercontent.com/104893843/209110130-94d2cacc-de63-4d7d-b525-d9b840be5e4d.png)
+![image](https://user-images.githubusercontent.com/104893843/209110198-45af3522-57fe-4fe5-b214-b7003b460b32.png)
+![image](https://user-images.githubusercontent.com/104893843/209110262-8219d0a9-bff4-4297-9d51-d0ab600ac302.png)
+![image](https://user-images.githubusercontent.com/104893843/209110301-5d296a0a-38b9-4897-a19f-1c288e91ce02.png)
+![image](https://user-images.githubusercontent.com/104893843/209110349-88a54647-1572-4d24-9312-d56ef13dc603.png)
+
+
 
 Мы инициализируем 4 обьекта класса ```PerceptronClass``` и обучаем их, каждого своей операции.
-
 А затем выводим резальтаты обучения
+
 ```csharp
         int iterations = 8;
         var orPerceptron = new PerceptronClass();
@@ -165,7 +156,8 @@ private class PerceptronClass
         Debug.Log("Test 1 nand 1: " + nandPerceptron.CalcOutput(1, 1));
 ```
 В консоли мы видим результаты. 
-![Screenshot_1](https://user-images.githubusercontent.com/49115035/204156429-a45aabb4-8626-4d7a-860d-08a3ccbae3e0.png)
+![image](https://user-images.githubusercontent.com/104893843/209110575-14e9af7c-cfb1-4a01-ab5e-ef0017ccdde5.png)
+
 Однако как мы можем заметить, только у операции ```XOR``` не верные результаты, из-за того что линейная модель перцептрона не может правильно разделить одной линией подобного рода плоскость, а примерно так и выглядит операция ```XOR```.
 ![9af085a4c6ff4f83bcb92b6ea974fa01](https://user-images.githubusercontent.com/49115035/204156563-172dd9d6-c94b-4476-bc8e-29ad88230723.png)
 
